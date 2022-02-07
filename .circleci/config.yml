@@ -2,13 +2,13 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: docker:17.07.0-ce-git
+      - image: docker:19.03.13
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          command: docker build -t miyajan/test-circleci-docker .
+          command: docker build -t 9muta/bitcoind-test:22.0 .
       - run:
           command: docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
       - run:
-          command: docker push miyajan/test-circleci-docker
+          command: docker push 9muta/bitcoind-test:22.0
