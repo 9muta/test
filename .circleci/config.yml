@@ -9,6 +9,9 @@ jobs:
           docker_layer_caching: true
       - checkout
       - run:
+          name: Setup Environment Value
+          command: echo 'export CIRCLE_TAG="22.0-old"' >> $BASH_ENV
+      - run:
           name: Build
           command: docker build -t ${OWNER}/${IMAGE_NAME}:latest .
       - run:
@@ -20,5 +23,3 @@ jobs:
       - run:
           name: Push image to registory
           command: docker push ${OWNER}/${IMAGE_NAME}
-    environment:
-      CIRCLE_TAG: 22.0-old
